@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<h3>Nhap vao cac phan tu cua mang</h3>
+<input type="text" id="phanTu">
+<button onclick="nhap()">Nhap</button>
+<h3 id="hienThi">Hien thi</h3>
+<br>
+<button onclick="sapXep()">Sap Xep</button>
+<br>
+<h4 id="xepLai">Sau khi sap xep</h4>
+<body>
+
+<script>
+    let data=[]
+    function nhap() {
+        let so =+document.getElementById("phanTu").value;
+        data.push(so)
+        xuat()
+        don()
+    }
+    function xuat(){
+
+        document.getElementById('hienThi').innerText=data
+    }
+    function don(){
+        document.getElementById('phanTu').value= '';
+    }
+    function sapXep(){
+        let sx_data=data.sort
+        (function(a,b){
+            if (a>b) return -1;
+            if (a<b) return 1;
+            return 0
+        })
+        console.log('DATA=',data)
+        console.log('--------------- =',sx_data)
+        document.getElementById('xepLai').innerText= sx_data
+    }
+
+</script>
+</body>
+</html>

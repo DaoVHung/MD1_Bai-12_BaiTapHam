@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<meta charset="UTF-8">
+<title>Title</title>
+<style>
+
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+    #customers tr:hover {background-color: #ddd;}
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+    .font{
+        font-family: Bahnschrift;
+    }
+</style>
+</head>
+<body class="font">
+<h1 style="text-align: center">----PRODUCT----</h1>
+<label id="validate"></label><br>
+<input id="newProduct" type="text" placeholder="New product">
+<button onclick="createProduct()" style="background-color:#04AA6D; border-radius: 15%; border: 1px solid #ddd;   font-family: Arial, Helvetica, sans-serif; color: white" ">Add</button>
+<br>
+<br>
+<table id="customers">
+  <tr>
+    <th>Product Name</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <tbody id="drawTable">
+  </tbody>
+
+</table>
+<script>
+  let productList = []
+
+  function showList() {
+    let drawTable = '';
+    for (let i = 0; i < productList.length; i++) {
+      drawTable += `<tr>
+                    <td>${productList[i]}</td>
+                    <td><button style="background-color:#04AA6D; border-radius: 15%; border: 1px solid #ddd;   font-family: Arial, Helvetica, sans-serif; color: white" onclick="updateProduct(${i})">Edit</button></td>
+                    <td><button style="background-color:#04AA6D; border-radius: 15%; border: 1px solid #ddd;  font-family: Arial, Helvetica, sans-serif;  color: white" onclick="deleteProduct(${i})">Delete</button></td>
+                    </tr>`
+    }
+    document.getElementById('drawTable').innerHTML = drawTable;
+      don()
+  }
+
+  showList()
+
+
+  function createProduct() {
+    let newProduct= document.getElementById('newProduct').value;
+    if (newProduct.trim() === '') {
+      document.getElementById('validate').innerHTML = '<label style="color: red; font-family: Bahnschrift">The Product is required! Please try again!</label>'
+    } else {
+      productList.push(newProduct);
+      document.getElementById('validate').innerHTML = '<label style="color: blue">Create Product Success!</label>'
+      showList();
+    }
+  }
+  function updateProduct(id) {
+    console.log('id ====== ', id)
+    let updateProduct = prompt('Enter the new Student to Update: ', 'Old Name: ' + productList[id])
+    if (updateProduct.trim() === '') {
+      document.getElementById('validate').innerHTML = '<label style="color: red; font-family: Bahnschrift">Product is required! Please try again!</label>'
+    } else {
+      if (updateProduct === productList[id]) {
+        document.getElementById('validate').innerHTML = '<label style="color: red; font-family: Bahnschrift">The name is existed! Please try again!</label>'
+      } else {
+        productList[id] = updateProduct;
+        document.getElementById('validate').innerHTML = '<label style="color: blue; font-family: Bahnschrift">Edit Success!</label>'
+        showList();
+      }
+    }
+  }
+  function deleteProduct(id) {
+    if(confirm('Are you sure delete product?')){
+      productList.splice(id,1)
+      document.getElementById('validate').innerHTML = '<label style="color: blue; font-family: Bahnschrift">Delete Success!</label>'
+      showList();
+    } else {
+      document.getElementById('validate').innerHTML = '<label style="color: red; font-family: Bahnschrift">^^!</label>'
+    }
+  }
+  function don() {
+      document.getElementById("newProduct").value = ""
+  }
+</script>
+
+</body>
+</html>

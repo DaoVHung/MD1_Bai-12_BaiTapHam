@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function ktdoixung(strings,start ,end){
+        if(end-start==1 || start==end){
+            return 1
+        }else {
+            if(s[start]==s[end]){
+                return ktdoixung(s,start+1,end-1);
+            }else {
+                return 0;
+            }
+        }
+
+    }
+
+
+</script>
+
+
+</body>
+</html>

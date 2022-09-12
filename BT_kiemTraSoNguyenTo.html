@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiem Tra So Nguyen To</title>
+</head>
+<body>
+<h1>Hien thi so nguyen to tu 1 -> 1000</h1>
+
+<script>
+  function isPrime(number) {
+      for (let i = 2; i < number ; i++) {
+          if (number % i==0){
+              console.log("ko phải số nguyên tố")
+              return false;
+          }
+      }
+      console.log("Là số nguyên tố")
+      return number >=2;
+  }
+  console.log(isPrime(13 ))
+</script>
+
+
+
+
+
+</body>
+</html>
